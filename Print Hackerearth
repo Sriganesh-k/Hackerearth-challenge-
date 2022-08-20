@@ -1,0 +1,21 @@
+def Hack_Count(n,data):
+   if(n<11):
+       return 0
+    else:
+       data=data.lower()
+       c=0
+       l=['h','a','c','k','e','r','t']  
+       std={'h':2,'a':2,'c':1,'k':1,'e':2,'r':2,'t':1}
+       lib={}
+       for i in l:
+           c=data.count(i)
+           lib[i]=c
+        k=[]
+        for i in l:
+           k.append(lib[i]// std[i])
+        return min(k)
+n=int(input())
+data=input()
+print(Hack_Count(n,data))
+
+
