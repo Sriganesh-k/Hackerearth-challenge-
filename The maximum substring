@@ -1,0 +1,65 @@
+#include<stdio.h>
+int individual_char (char a[],int index,int b[])
+{
+int i,k=index,max=k,n=0;
+for(i=k+1;a[i]!='\0';i++)
+{
+if(a[index]==a[i])
+{
+k++;
+for(i=i+1;;i++)
+{
+if(a[i]==a[k])
+k++;
+else
+break;
+}
+n++;
+}
+if(k>index)
+{
+k--;
+i--;
+}
+if(n==1)
+{
+if(k>max)
+max=k;
+}
+if(n>1)
+{
+if(k<max)
+max=k;
+}
+k=index;
+}
+//printf("%d",max);
+b[index]=(max-index)+1;
+//printf("%d ",b[index]);
+return n;
+
+}
+int main()
+{
+char a[100000];
+scanf("%s",a);
+int b[100000],num,occ=0,previous=0;
+b[0]=0;
+for(int i =0;a[i]!='\0';i++)
+{
+    num=individual_char(a,i,b);
+    if(num>occ)
+    {
+        occ=num;
+        previous=i;
+    }
+    if(num==occ)
+    {
+        if(b[i]>b[previous])
+        previous=i;
+    }
+}
+for(int i=previous;i<(b[previous]+previous);i++)
+printf("%c",a[i]);
+}
+
